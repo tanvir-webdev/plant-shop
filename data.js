@@ -169,25 +169,50 @@ const products = [
   },
 ];
 
+let cartCount = 0;
+let sumTotal = 0;
 
-function productCart(){
-  for(product of products){
+function addToCart(price) {
+  cartCount++;
+  sumTotal = sumTotal + price
+  document.getElementById('cart-count').innerText = cartCount;
+  document.getElementById('cart-total').innerText = cartCount;
+  document.getElementById('sum-total').innerText = sumTotal;
+}
+
+function productCart() {
+
+  for (product of products) {
     const cart = document.createElement('div')
-    cart.innerHTML= `
+    cart.innerHTML = `
       <div class="shadow-xl flex flex-col justify-around items-center p-8 border border-gray-200 rounded-xl">
-        <img class="w-4/5" src="https://www.plantstore.ie/cdn/shop/products/Scindapsus_ff99fc67-bace-4efc-9e8b-d0811e2e131e.png?v=1636054528&width=1100" alt="">
-        <h2 class="font-bold text-xl text-center my-4">Small Scindapsus Aureum - Devil’s Ivy- Pothos</h2>
+        <img class="w-4/5" src="${product.img_url}" alt="">
+        <h2 class="font-bold text-xl text-center my-4">${product.name}</h2>
         <div class="flex gap-4 text-lg font-medium my-4">
           <h3 class="line-through text-gray-500">$200</h3>
-          <h3>$180</h3>
+          <h3>$${product.price}</h3>
         </div>
-        <button class="btn btn-success text-white">Add to Cart</button>
+        <button Onclick="addToCart(${product.price})" class="btn btn-success text-white">Add to Cart</button>
       </div>
     `
     const cartContainer = document.getElementById('product-container')
     cartContainer.appendChild(cart)
   }
+
+  
+  document.getElementById('cart-count').innerText = cartCount;
+  document.getElementById('cart-total').innerText = cartCount;
+  document.getElementById('sum-total').innerText = sumTotal;
   
 }
 
+
+
 productCart()
+
+// function addToCart(){
+//   let cartNum = 
+//   let cartNumber = stringToNumber(cartNum)
+//   cartNumber = cartCount
+//   // console.log(cartCount)
+// }
